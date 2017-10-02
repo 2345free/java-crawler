@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>java-crawler</artifactId>
@@ -9,11 +9,17 @@
     <artifactId>webmagic</artifactId>
     <packaging>war</packaging>
 
+    <properties>
+        <springfox-swagger.version>2.7.0</springfox-swagger.version>
+        <webmagic.version>0.7.3</webmagic.version>
+        <jsoup.version>1.10.3</jsoup.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-            <version>1.10.3</version>
+            <version>${jsoup.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -27,14 +33,27 @@
         <dependency>
             <groupId>us.codecraft</groupId>
             <artifactId>webmagic-core</artifactId>
-            <version>0.7.3</version>
+            <version>${webmagic.version}</version>
         </dependency>
 
         <dependency>
             <groupId>us.codecraft</groupId>
             <artifactId>webmagic-extension</artifactId>
-            <version>0.7.3</version>
+            <version>${webmagic.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox-swagger.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox-swagger.version}</version>
+        </dependency>
+
 
     </dependencies>
 
