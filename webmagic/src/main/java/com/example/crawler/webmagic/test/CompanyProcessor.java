@@ -24,7 +24,7 @@ public class CompanyProcessor implements PageProcessor {
 
 
     public void process(Page page) {
-        // 需要把resources\static\chromedriver.exe放在C:\Windows\System32目录下
+        // 需要把resources\static\chromedriver_win32.rar解压后放在C:\Windows\System32目录下
         WebDriver driver = new ChromeDriver();
         driver.get("http://www.sse.com.cn/assortment/stock/list/info/company/index.shtml?COMPANY_CODE=600000");
         try {
