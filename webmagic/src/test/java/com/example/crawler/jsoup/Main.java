@@ -8,7 +8,7 @@
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
  */
-package java.com.example.crawler.jsoup;
+package com.example.crawler.jsoup;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

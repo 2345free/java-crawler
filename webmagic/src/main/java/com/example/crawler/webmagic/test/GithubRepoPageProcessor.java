@@ -44,8 +44,6 @@ public class GithubRepoPageProcessor implements PageProcessor {
         // 部分三：从页面发现后续的url地址来抓取
         page.addTargetRequests(page.getHtml().links().regex("(https://github\\.com/[\\w\\-]+/[\\w\\-]+)").all());
 
-//        ResultItems resultItems = page.getResultItems();
-//        System.err.format("url:%s\n处理结果:%s", page.getUrl(), JSON.toJSONString(resultItems, true));
     }
 
     @Override

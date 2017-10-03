@@ -1,4 +1,4 @@
-package com.example.crawler.utils;
+package com.example.crawler.webmagic.utils;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.entity.UrlEncodedFormEntity;

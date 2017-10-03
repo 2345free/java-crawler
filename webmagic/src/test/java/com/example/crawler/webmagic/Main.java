@@ -10,7 +10,7 @@
  */
 package com.example.crawler.webmagic;
 
-import com.example.crawler.utils.HttpUtils;
+import com.example.crawler.webmagic.utils.HttpUtils;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
