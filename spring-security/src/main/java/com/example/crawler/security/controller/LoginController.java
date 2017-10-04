@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
  * Created by luoxx on 2017/10/1.
  */
 @Controller
-@RequestMapping("/demo")
+@RequestMapping("/user")
 public class LoginController {
 
     @ApiOperation(value = "登陆表单")
     @GetMapping("/login")
     public String login() {
-        return "redirect:/login";
+        return "user/login";
     }
 
     @ApiOperation(value = "登陆")
