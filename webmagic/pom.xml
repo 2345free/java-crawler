@@ -10,7 +10,6 @@
     <packaging>war</packaging>
 
     <properties>
-        <springfox-swagger.version>2.7.0</springfox-swagger.version>
         <webmagic.version>0.7.3</webmagic.version>
         <jsoup.version>1.10.3</jsoup.version>
     </properties>
@@ -53,19 +52,6 @@
             <artifactId>selenium-java</artifactId>
             <version>3.6.0</version>
         </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox-swagger.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${springfox-swagger.version}</version>
-        </dependency>
-
 
     </dependencies>
 
