@@ -37,7 +37,7 @@ public class CasSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests() // 配置安全策略
-                .antMatchers("/", "/login").permitAll() // 定义首页请求不需要验证
+                .antMatchers("/", "/login","/**").permitAll() // 定义首页请求不需要验证
                 .anyRequest().authenticated() // 其余的所有请求都需要验证
                 .and()
                 .logout()
