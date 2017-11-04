@@ -42,16 +42,17 @@ public class BaseTest {
 
     @Test
     public void testFind() {
-        List<String> rows = template.find("user", "cf", "name", new RowMapper<String>() {
+        List<String> rows = template.find("user", "personal info", "name", new RowMapper<String>() {
             public String mapRow(Result result, int i) throws Exception {
                 return result.toString();
             }
         });
+        System.err.println(rows);
         Assert.assertNotNull(rows);
     }
 
     @Test
     public void testPut() {
-        template.put("user", "1", "cf", "name", Bytes.toBytes("Alice"));
+        template.put("user", "0001", "personal info", "name", Bytes.toBytes("tianyi"));
     }
 }

@@ -14,7 +14,7 @@
     <!-- hadoop -->
     <hdp:configuration resources="classpath:hbase-site.xml"/>
 
-    <hdp:hbase-configuration configuration-ref="hadoopConfiguration"/>
+    <hdp:hbase-configuration configuration-ref="hadoopConfiguration" delete-connection="false"/>
 
     <bean id="hbaseTemplate" class="org.springframework.data.hadoop.hbase.HbaseTemplate">
         <property name="configuration" ref="hbaseConfiguration"/>
