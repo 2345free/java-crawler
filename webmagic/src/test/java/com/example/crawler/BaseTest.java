@@ -10,19 +10,10 @@
  */
 package com.example.crawler;
 
-import org.apache.hadoop.hbase.client.Result;
-import org.apache.hadoop.hbase.util.Bytes;
-import org.junit.Assert;
-import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.hadoop.hbase.HbaseTemplate;
-import org.springframework.data.hadoop.hbase.RowMapper;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-
-import java.util.List;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -37,22 +28,4 @@ import java.util.List;
 @WebAppConfiguration
 public class BaseTest {
 
-    @Autowired
-    private HbaseTemplate template;
-
-    @Test
-    public void testFind() {
-        List<String> rows = template.find("user", "personal info", "name", new RowMapper<String>() {
-            public String mapRow(Result result, int i) throws Exception {
-                return result.toString();
-            }
-        });
-        System.err.println(rows);
-        Assert.assertNotNull(rows);
-    }
-
-    @Test
-    public void testPut() {
-        template.put("user", "0001", "personal info", "name", Bytes.toBytes("tianyi"));
-    }
 }
