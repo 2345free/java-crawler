@@ -43,7 +43,7 @@ public class HttpUtils {
         }
     }
 
-    public static final String postJson(HttpPost httpPost, String jsonParam) throws IOException {
+    public static String postJson(HttpPost httpPost, String jsonParam) throws IOException {
         try {
             httpPost.addHeader("Content-Type", ContentType.APPLICATION_JSON.getMimeType());
             HttpEntity entity = new StringEntity(jsonParam, ContentType.APPLICATION_JSON);
@@ -60,7 +60,7 @@ public class HttpUtils {
         return null;
     }
 
-    public static final String postXml(String url, String xml) throws IOException {
+    public static String postXml(String url, String xml) throws IOException {
         HttpPost httpPost = new HttpPost();
         try {
             String defaultCharset = "UTF-8";
@@ -83,7 +83,7 @@ public class HttpUtils {
         return null;
     }
 
-    public static final String postXmlJdk(String url, String param, String charset) throws Exception {
+    public static String postXmlJdk(String url, String param, String charset) throws Exception {
 
         PrintWriter out = null;
         BufferedReader in = null;

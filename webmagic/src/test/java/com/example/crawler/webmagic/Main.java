@@ -59,17 +59,19 @@ public class Main {
         // 这样登陆不行，因为第一次需要访问需要拿到上下文context
         // Document doc = Jsoup.connect(LOGIN_URL).get();
         String LOGIN_URL = "https://passport.csdn.net/account/login";
-        String html = HttpUtils.sendGet(LOGIN_URL);
+        String html = HttpUtils.request(new HttpGet(LOGIN_URL));
         Document doc = Jsoup.parse(html);
         Element form = doc.select(".user-pass").get(0);
 
         List<BasicNameValuePair> nvps = new ArrayList<>();
-        nvps.add(new BasicNameValuePair("username", "492222986@qq.com"));
-        nvps.add(new BasicNameValuePair("password", "WzMm091208"));
-        nvps.add(new BasicNameValuePair("lt", form.select("input[name=lt]").get(0).val()));
-        nvps.add(new BasicNameValuePair("execution", form.select("input[name=execution]").get(0).val()));
-        nvps.add(new BasicNameValuePair("_eventId", form.select("input[name=_eventId]").get(0).val()));
-        String ret = HttpUtils.sendPost(LOGIN_URL, nvps);
+        URI uri = new URIBuilder(LOGIN_URL)
+                .addParameter("username", "492222986@qq.com")
+                .addParameter("password", "WzMm091208")
+                .addParameter("lt", form.select("input[name=lt]").get(0).val())
+                .addParameter("execution", form.select("input[name=execution]").get(0).val())
+                .addParameter("_eventId", form.select("input[name=_eventId]").get(0).val()).build();
+
+        String ret = HttpUtils.request(new HttpPost(uri));
 
         if (ret.indexOf("redirect_back") > -1) {
             System.err.println("登陆成功");
