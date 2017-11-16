@@ -26,7 +26,7 @@ public class ProxyCralwerUnusedVPN {
         /**
          * 想要获取的代理IP个数，由需求方自行指定。（如果个数太多，将导致返回变慢）
          */
-        proxyCrawler.startCrawler(1);
+        proxyCrawler.startCrawler(5);
     }
 
     /**
@@ -37,9 +37,9 @@ public class ProxyCralwerUnusedVPN {
     public String startCrawler(int wantedNumber) {
         localWantedNumber.set(wantedNumber);
 
-//        kuaidailiCom("http://www.xicidaili.com/nn/", 15);
-//        kuaidailiCom("http://www.xicidaili.com/nt/", 15);
-//        kuaidailiCom("http://www.xicidaili.com/wt/", 15);
+        kuaidailiCom("http://www.xicidaili.com/nn/", 15);
+        kuaidailiCom("http://www.xicidaili.com/nt/", 15);
+        kuaidailiCom("http://www.xicidaili.com/wt/", 15);
         kuaidailiCom("http://www.kuaidaili.com/free/inha/", 15);
         kuaidailiCom("http://www.kuaidaili.com/free/intr/", 15);
         kuaidailiCom("http://www.kuaidaili.com/free/outtr/", 15);
