@@ -11,7 +11,7 @@
 package com.example.crawler.webmagic;
 
 import com.alibaba.fastjson.PropertyNamingStrategy;
-import com.alibaba.fastjson.serializer.SerializeConfig;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -43,8 +43,8 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
     public FastJsonConfig fastJsonConfig() {
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         // 全局配置命名策略
-        SerializeConfig.getGlobalInstance()
-                .propertyNamingStrategy = PropertyNamingStrategy.CamelCase; // 下划线规则: SnakeCase
+        fastJsonConfig.getSerializeConfig().setPropertyNamingStrategy(PropertyNamingStrategy.CamelCase); // 下划线规则: SnakeCase
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.DisableCircularReferenceDetect); // 禁用循环引用检测
         return fastJsonConfig;
     }
 

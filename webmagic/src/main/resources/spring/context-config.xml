@@ -2,22 +2,28 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:hdp="http://www.springframework.org/schema/hadoop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd">
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="com.example.crawler"></context:component-scan>
+    <context:component-scan base-package="com.example.crawler.webmagic"></context:component-scan>
+
+    <!-- aop -->
+    <!-- 启动对@AspectJ注解的支持  -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
     <!-- hadoop -->
-    <hdp:configuration resources="classpath:hbase-site.xml"/>
+    <!--    <hdp:configuration resources="classpath:hbase-site.xml"/>
 
-    <hdp:hbase-configuration configuration-ref="hadoopConfiguration" delete-connection="false"/>
+        <hdp:hbase-configuration configuration-ref="hadoopConfiguration" delete-connection="false"/>
 
-    <bean id="hbaseTemplate" class="org.springframework.data.hadoop.hbase.HbaseTemplate">
-        <property name="configuration" ref="hbaseConfiguration"/>
-    </bean>
+        <bean id="hbaseTemplate" class="org.springframework.data.hadoop.hbase.HbaseTemplate">
+            <property name="configuration" ref="hbaseConfiguration"/>
+        </bean>-->
 
 </beans>

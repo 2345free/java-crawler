@@ -1,6 +1,7 @@
 package com.example.crawler.webmagic.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.crawler.webmagic.annotation.ApiLog;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ public class DemoController {
 
     @ApiOperation(value = "value", notes = "notes")
     @GetMapping("/json")
+    @ApiLog(remark = "获取用户信息json")
     public Object demo() {
         JSONObject o = new JSONObject();
         o.put("userName", "tianyi");
