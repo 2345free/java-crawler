@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 @ManagedResource
 public class TrackingThreadPool extends ThreadPoolExecutor {
 
-    private final Map<Runnable, Boolean> inProgress = new ConcurrentHashMap<Runnable, Boolean>();
+    private final Map<Runnable, Boolean> inProgress = new ConcurrentHashMap<>();
     private final ThreadLocal<Long> startTime = new ThreadLocal<>();
     private long totalTime;
     private int totalTasks;
@@ -82,7 +82,7 @@ public class TrackingThreadPool extends ThreadPoolExecutor {
     }
 
     private String[] toStringArray(Collection<Runnable> collection) {
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         for (Runnable r : collection)
             list.add(r.toString());
         return list.toArray(new String[0]);

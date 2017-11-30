@@ -1,0 +1,11 @@
+<p><strong>您的订单信息如下:</strong></p>
+<table xmlns:th="http://www.thymeleaf.org" border="1" cellspacing="0">
+    <tr>
+        <td bgcolor="#F2F2F2">订单号</td>
+        <td th:text="${tid}"></td>
+    </tr>
+    <tr>
+        <td bgcolor="#F2F2F2">图片</td>
+        <td><img src="cid:cid_order_img" th:alt="${logo}"></td>
+    </tr>
+</table>
