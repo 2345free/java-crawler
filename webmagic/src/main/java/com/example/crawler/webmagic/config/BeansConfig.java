@@ -30,6 +30,38 @@ public class BeansConfig {
     }
 
     @Bean
+    public JavaMailSender qqMailSender() throws GeneralSecurityException {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.qq.com");
+        mailSender.setProtocol("smtp");
+        mailSender.setPort(465);
+        mailSender.setUsername("3060928836@qq.com");
+        // 获取16位授权码 http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
+        mailSender.setPassword("16位授权码,非QQ登录密码");
+        mailSender.setDefaultEncoding("UTF-8");
+
+        //使用SSL,企业邮箱必需
+        MailSSLSocketFactory sslSocketFactory = new MailSSLSocketFactory();
+        sslSocketFactory.setTrustAllHosts(true);
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", true);
+        props.put("mail.smtp.ssl.enable", true);
+        props.put("mail.smtp.ssl.socketFactory", sslSocketFactory);
+        Session session = Session.getDefaultInstance(props, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                PasswordAuthentication authentication = new PasswordAuthentication(mailSender.getUsername(), mailSender.getPassword());
+                return authentication;
+            }
+        });
+        //设置session的调试模式，发布时取消
+        session.setDebug(true);
+        mailSender.setSession(session);
+
+        return mailSender;
+    }
+
+    @Bean
     public JavaMailSender mailSender() throws GeneralSecurityException {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.exmail.qq.com");

@@ -18,19 +18,19 @@ import java.io.UnsupportedEncodingException;
 public class SendMailTest extends BaseTest {
 
     @Autowired
-    private JavaMailSender mailSender;
+    private JavaMailSender qqMailSender;
 
     @Autowired
     private SpringTemplateEngine templateEngine;
 
     @Test
     public void testSendmail() throws MessagingException, UnsupportedEncodingException {
-        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessage message = qqMailSender.createMimeMessage();
 
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 //        helper.setFrom(((JavaMailSenderImpl) mailSender).getUsername());
         String nick = javax.mail.internet.MimeUtility.encodeText("发件人显示名称");
-        helper.setFrom(new InternetAddress(String.format("%s <%s>", nick, ((JavaMailSenderImpl) mailSender).getUsername())));
+        helper.setFrom(new InternetAddress(String.format("%s <%s>", nick, ((JavaMailSenderImpl) qqMailSender).getUsername())));
         helper.addTo("tianyi@gshopper.com");
         helper.addTo("3060928836@qq.com");
         helper.setSubject("您的订单信息");
@@ -45,7 +45,7 @@ public class SendMailTest extends BaseTest {
         String cid = "cid_order_img";
         helper.addInline(cid, resource);
 
-        mailSender.send(message);
+        qqMailSender.send(message);
     }
 
 }
