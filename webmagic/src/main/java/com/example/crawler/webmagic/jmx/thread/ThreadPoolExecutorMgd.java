@@ -13,15 +13,15 @@ import java.util.concurrent.TimeUnit;
  * @author tianyi
  */
 @ManagedResource
-public class TrackingThreadPool extends ThreadPoolExecutor {
+public class ThreadPoolExecutorMgd extends ThreadPoolExecutor {
 
     private final Map<Runnable, Boolean> inProgress = new ConcurrentHashMap<>();
     private final ThreadLocal<Long> startTime = new ThreadLocal<>();
     private long totalTime;
     private int totalTasks;
 
-    public TrackingThreadPool(int corePoolSize, int maximumPoolSize, long keepAliveTime,
-                              TimeUnit unit, BlockingQueue<Runnable> workQueue) {
+    public ThreadPoolExecutorMgd(int corePoolSize, int maximumPoolSize, long keepAliveTime,
+                                 TimeUnit unit, BlockingQueue<Runnable> workQueue) {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
     }
 

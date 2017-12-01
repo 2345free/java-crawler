@@ -1,8 +1,5 @@
 package com.example.crawler.webmagic.jmx.thread;
 
-import org.springframework.jmx.export.annotation.ManagedResource;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -11,9 +8,9 @@ import java.util.Collection;
  */
 public class ThreadPoolStatus implements ThreadPoolStatusMBean {
 
-    private final TrackingThreadPool pool;
+    private final ThreadPoolExecutorMgd pool;
 
-    public ThreadPoolStatus(TrackingThreadPool pool) {
+    public ThreadPoolStatus(ThreadPoolExecutorMgd pool) {
         this.pool = pool;
     }
 

@@ -29,10 +29,10 @@ public class SendMailTest extends BaseTest {
 
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 //        helper.setFrom(((JavaMailSenderImpl) mailSender).getUsername());
-        String nick = javax.mail.internet.MimeUtility.encodeText("发件人显示名称");
+        String nick = javax.mail.internet.MimeUtility.encodeText("测试邮件");
         helper.setFrom(new InternetAddress(String.format("%s <%s>", nick, ((JavaMailSenderImpl) qqMailSender).getUsername())));
         helper.addTo("tianyi@gshopper.com");
-        helper.addTo("3060928836@qq.com");
+        helper.addTo("272175223@qq.com");
         helper.setSubject("您的订单信息");
 
         Context context = new Context();

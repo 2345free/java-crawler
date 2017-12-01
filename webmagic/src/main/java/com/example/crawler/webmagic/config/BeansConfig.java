@@ -1,6 +1,6 @@
 package com.example.crawler.webmagic.config;
 
-import com.example.crawler.webmagic.jmx.thread.TrackingThreadPool;
+import com.example.crawler.webmagic.jmx.thread.ThreadPoolExecutorMgd;
 import com.sun.mail.util.MailSSLSocketFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,10 +23,10 @@ import java.util.concurrent.TimeUnit;
 public class BeansConfig {
 
     @Bean
-    public TrackingThreadPool trackingThreadPool() {
+    public ThreadPoolExecutorMgd trackingThreadPool() {
         LinkedBlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<>();
         System.err.format("剩余容量: %s \n", workQueue.remainingCapacity());
-        return new TrackingThreadPool(5, 10, 5, TimeUnit.MINUTES, workQueue);
+        return new ThreadPoolExecutorMgd(5, 10, 5, TimeUnit.MINUTES, workQueue);
     }
 
     @Bean
@@ -37,10 +37,10 @@ public class BeansConfig {
         mailSender.setPort(465);
         mailSender.setUsername("3060928836@qq.com");
         // 获取16位授权码 http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
-        mailSender.setPassword("16位授权码,非QQ登录密码");
+        mailSender.setPassword("16位授权码");
         mailSender.setDefaultEncoding("UTF-8");
 
-        //使用SSL,企业邮箱必需
+        //使用SSL
         MailSSLSocketFactory sslSocketFactory = new MailSSLSocketFactory();
         sslSocketFactory.setTrustAllHosts(true);
         Properties props = new Properties();
