@@ -285,6 +285,14 @@
             <version>3.3.7-1</version>
         </dependency>
 
+        <!-- elasticsearch -->
+        <!-- 低版本的客户端连接5.x的es服务器会报错: NodeDisconnectedException -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-elasticsearch</artifactId>
+            <version>2.1.9.RELEASE</version>
+        </dependency>
+
 
     </dependencies>
 
