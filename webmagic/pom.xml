@@ -287,10 +287,22 @@
 
         <!-- elasticsearch -->
         <!-- 低版本的客户端连接5.x的es服务器会报错: NodeDisconnectedException -->
+        <!--
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-elasticsearch</artifactId>
             <version>2.1.9.RELEASE</version>
+        </dependency>
+        -->
+
+        <!-- es官方申明：我们计划TransportClient在Elasticsearch 7.0中弃用它，并在8.0中完全删除它。相反，您应该使用 Java高级别REST客户端，
+             它执行HTTP请求而不是序列化的Java请求。
+             https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/java-api.html
+        -->
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>5.6.3</version>
         </dependency>
 
 
