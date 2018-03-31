@@ -2,28 +2,22 @@ package com.example.crawler.webmagic.config;
 
 import com.example.crawler.webmagic.jmx.thread.ThreadPoolExecutorMgd;
 import com.sun.mail.util.MailSSLSocketFactory;
-import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import org.thymeleaf.spring4.SpringTemplateEngine;
-import org.thymeleaf.spring4.view.ThymeleafViewResolver;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import java.security.GeneralSecurityException;
-import java.util.Locale;
 import java.util.Properties;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author tianyi
+ */
 @Configuration
 public class BeansConfig {
 
@@ -95,87 +89,6 @@ public class BeansConfig {
         mailSender.setSession(session);
 
         return mailSender;
-    }
-
-    /* **************************************************************** */
-    /*  THYMELEAF-SPRING                                                */
-    /*  TemplateResolver <- TemplateEngine <- ViewResolver              */
-    /* **************************************************************** */
-    @Bean
-    public ClassLoaderTemplateResolver templateResolver() {
-        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix("templates/html/");
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode(TemplateMode.HTML);
-        templateResolver.setCharacterEncoding("UTF-8");
-        templateResolver.setCacheable(false);
-        return templateResolver;
-    }
-
-    @Bean
-    public ClassLoaderTemplateResolver xmlTemplateResolver() {
-        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix("templates/xml/");
-        templateResolver.setSuffix(".xml");
-        templateResolver.setTemplateMode(TemplateMode.XML);
-        templateResolver.setCharacterEncoding("UTF-8");
-        templateResolver.setCacheable(false);
-        return templateResolver;
-    }
-
-    @Bean
-    public SpringTemplateEngine templateEngine() {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver());
-        templateEngine.setEnableSpringELCompiler(true);
-        return templateEngine;
-    }
-
-    @Bean
-    public SpringTemplateEngine xmlTemplateEngine() {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(xmlTemplateResolver());
-        templateEngine.setEnableSpringELCompiler(true);
-        return templateEngine;
-    }
-
-    @Bean
-    public ThymeleafViewResolver viewResolver() {
-        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(templateEngine());
-        viewResolver.setOrder(1);
-        viewResolver.setViewNames(new String[]{".html", ".xhtml"});
-        return viewResolver;
-    }
-
-    /**
-     * 国际化配置
-     */
-    @Bean
-    public ReloadableResourceBundleMessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("messages/messages");
-        System.err.println(messageSource.getMessage("nan", null, Locale.US));
-        return messageSource;
-    }
-
-    @Bean
-    public SessionLocaleResolver localeResolver() {
-        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-        localeResolver.setLocaleAttributeName("language");
-        localeResolver.setDefaultLocale(Locale.US);
-        return localeResolver;
-    }
-
-    /**
-     * 验证
-     */
-    @Bean
-    public LocalValidatorFactoryBean validator() {
-        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
-        validator.setProviderClass(HibernateValidator.class);
-        validator.setValidationMessageSource(messageSource());
-        return validator;
     }
 
 }
