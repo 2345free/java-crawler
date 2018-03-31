@@ -13,7 +13,7 @@
     <!-- aop config -->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <mvc:annotation-driven>
+    <mvc:annotation-driven validator="validator">
         <mvc:message-converters register-defaults="true">
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <property name="supportedMediaTypes">
@@ -42,5 +42,29 @@
 
     <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
+    <!-- 国际化资源文件 -->
+    <!--<bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>messages/messages</value>
+            </list>
+        </property>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+        &lt;!&ndash;指定国际化配置文件 不设置则默认为classpath下的 ValidationMessages.properties &ndash;&gt;
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+
+    &lt;!&ndash; 本地化解析配置,采用cookie方式 &ndash;&gt;
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="cookieName" value="clientlanguage"/>
+        <property name="cookieMaxAge" value="94608000"/>
+        <property name="defaultLocale" value="en_US"/>
+    </bean>-->
 
 </beans>

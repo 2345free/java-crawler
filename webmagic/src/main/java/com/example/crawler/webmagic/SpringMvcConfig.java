@@ -13,11 +13,14 @@ package com.example.crawler.webmagic;
 import com.alibaba.fastjson.PropertyNamingStrategy;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.example.crawler.webmagic.config.BeansConfig;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -46,6 +49,19 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
         fastJsonConfig.getSerializeConfig().setPropertyNamingStrategy(PropertyNamingStrategy.CamelCase); // 下划线规则: SnakeCase
         fastJsonConfig.setSerializerFeatures(SerializerFeature.DisableCircularReferenceDetect); // 禁用循环引用检测
         return fastJsonConfig;
+    }
+
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+        localeChangeInterceptor.setParamName("language"); // Default is "locale"
+        localeChangeInterceptor.setIgnoreInvalidLocale(true);
+        return localeChangeInterceptor;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
     }
 
 }

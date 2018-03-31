@@ -2,11 +2,13 @@ package com.example.crawler.webmagic.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.crawler.webmagic.annotation.ApiLog;
+import com.example.crawler.webmagic.model.User;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
+
+import javax.validation.Valid;
 
 /**
  * Created by luoxx on 2017/10/1.
@@ -31,6 +33,11 @@ public class DemoController {
         JSONObject o = new JSONObject();
         o.put("userName", "tianyi");
         return o;
+    }
+
+    @GetMapping("/user/add")
+    public Object addUser(@ModelAttribute @Valid User user, BindingResult bindingResult) {
+        return bindingResult.getFieldErrors();
     }
 
 }

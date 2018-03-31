@@ -2,10 +2,14 @@ package com.example.crawler.webmagic.config;
 
 import com.example.crawler.webmagic.jmx.thread.ThreadPoolExecutorMgd;
 import com.sun.mail.util.MailSSLSocketFactory;
+import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
@@ -15,6 +19,7 @@ import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import java.security.GeneralSecurityException;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -141,6 +146,36 @@ public class BeansConfig {
         viewResolver.setOrder(1);
         viewResolver.setViewNames(new String[]{".html", ".xhtml"});
         return viewResolver;
+    }
+
+    /**
+     * 国际化配置
+     */
+    @Bean
+    public ReloadableResourceBundleMessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasenames("messages/messages");
+        System.err.println(messageSource.getMessage("nan", null, Locale.US));
+        return messageSource;
+    }
+
+    @Bean
+    public SessionLocaleResolver localeResolver() {
+        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+        localeResolver.setLocaleAttributeName("language");
+        localeResolver.setDefaultLocale(Locale.US);
+        return localeResolver;
+    }
+
+    /**
+     * 验证
+     */
+    @Bean
+    public LocalValidatorFactoryBean validator() {
+        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+        validator.setProviderClass(HibernateValidator.class);
+        validator.setValidationMessageSource(messageSource());
+        return validator;
     }
 
 }

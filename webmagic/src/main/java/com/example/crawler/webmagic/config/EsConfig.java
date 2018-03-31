@@ -9,12 +9,11 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.sniff.Sniffer;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author tianyi
  */
-@Configuration
+//@Configuration
 public class EsConfig {
 
     @Bean
